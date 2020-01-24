@@ -9,8 +9,7 @@ class DockingStation
   end
   def release_bike
     fail "No bikes available" if empty?
-    bike = @bikes[0]
-    fail "Won't release broken bike" if bike.status == "broken"
+    check_status
     bike = @bikes.pop()
   end
 
@@ -33,6 +32,12 @@ class DockingStation
 
   def empty?
     return true if @bikes.empty? 
+  end
+
+  def check_status
+    bike = @bikes[0]
+    fail "Won't release broken bike" if bike.status == "broken"
+
   end
 
 end

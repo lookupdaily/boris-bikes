@@ -47,6 +47,11 @@ describe DockingStation do
       subject.dock(bike, "broken")
       expect(bike.status).to eq "broken"
     end
+
+    it "docks a broken bike" do
+      subject.dock(bike, "broken")
+      expect(subject.bikes).to eq [bike]
+    end
   end
 
   it "release working bikes " do
