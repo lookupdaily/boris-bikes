@@ -4,6 +4,16 @@ describe DockingStation do
   let (:bike) {Bike.new}
 
   it {is_expected.to respond_to(:release_bike)}
+  describe "#new" do
+    it "accepts an argument for maximum capacity" do
+      station = DockingStation.new(30)
+      expect(station.capacity).to eq(30)
+    end
+    it "has a capacity of 20 when no arguments given" do
+      expect(subject.capacity).to eq(20)
+    end
+  end
+
   describe '#release_bike' do
     it 'releases bikes if we have any' do
 
@@ -24,7 +34,7 @@ describe DockingStation do
     end
 
     it 'raises an error' do
-      20.times {subject.dock(bike)}
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock(bike)}
       expect { subject.dock(bike) }.to raise_error "No space available"
     end
   end
